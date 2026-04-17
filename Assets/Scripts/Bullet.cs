@@ -11,7 +11,6 @@ public class Bullet : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
 
-        // Note: linearVelocity is available in newer Unity versions (2023+)
         rb.linearVelocity = -transform.right * speed;
 
         Destroy(gameObject, LifeTime);

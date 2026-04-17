@@ -3,21 +3,22 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - Damage
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
   - Ground
+  - Enemy
   - 
   - 
   - 
   - 
-  - 
-  - 
+  - Pickup
   - 
   - 
   - 
