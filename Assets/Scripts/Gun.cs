@@ -13,7 +13,9 @@
         public float recoilSpeed = 15f;
         public GameObject droppedWeapon;
 
-        private int currentAmmo;
+        public AudioClip shootingSFX;
+
+    private int currentAmmo;
         private bool isReloading = false;
         private float nextTimeToFire = 0;
         private Quaternion initialRotation;
@@ -25,7 +27,8 @@
             currentAmmo = magSize;
             initialRotation = transform.localRotation;
             initialPosition = transform.localPosition;
-        }
+            UIManager.Instance.ammoText.text = currentAmmo.ToString();
+    }
 
         public void Shoot()
         {
@@ -40,8 +43,13 @@
 
             nextTimeToFire = Time.time + fireRate;
             currentAmmo--;
+            UIManager.Instance.ammoText.text = currentAmmo.ToString();
 
-            Instantiate(bullet, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
+        AudioManager.Instance.PlaySFX(shootingSFX, 0.25f);
+
+        Quaternion adjustedRotation = bulletSpawnPoint.rotation * Quaternion.Euler(-4f, -2f, 0f);
+
+        Instantiate(bullet, bulletSpawnPoint.position, adjustedRotation);
             Instantiate(weaponFlash, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
 
             StopCoroutine(nameof(Recoil));
@@ -80,6 +88,7 @@
             }
 
             currentAmmo = magSize;
+            UIManager.Instance.ammoText.text = currentAmmo.ToString();
             isReloading = false;
         }
 
@@ -110,6 +119,7 @@
 
         public void Drop()
         {
+            UIManager.Instance.ammoText.text = "";
             Instantiate(droppedWeapon, transform.position, transform.rotation);
             Destroy(gameObject);
         }   

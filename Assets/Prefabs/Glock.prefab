@@ -175,6 +175,7 @@ MonoBehaviour:
   recoilDistance: 0.07
   recoilSpeed: 15
   droppedWeapon: {fileID: 4965438261709640327, guid: e8d35de021b86814492c8dd3e636cef4, type: 3}
+  shootingSFX: {fileID: 8300000, guid: 3a571a8d293315b4dbf2344b84eb7810, type: 3}
 --- !u!1 &6650470630134122455
 GameObject:
   m_ObjectHideFlags: 0

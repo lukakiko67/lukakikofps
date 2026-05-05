@@ -22,6 +22,8 @@ public class Enemy : MonoBehaviour
     private Renderer rend;
     private Material originalMaterial;
 
+    public AudioClip shootingSFX;
+
     public int currentPointIndex = 0;
     public Vector3 currentTarget;
     public float positionThreshold;
@@ -238,6 +240,8 @@ public class Enemy : MonoBehaviour
             float randomPitch = Random.Range(-currentInaccuracy, currentInaccuracy);
 
             bulletRotation *= Quaternion.Euler(randomPitch, randomJaw + 90, 0f);
+
+            AudioManager.Instance.PlaySFX(shootingSFX, 0.5f);
 
             Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletRotation);
             Instantiate(weaponFlash, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
